@@ -1,7 +1,7 @@
 // =============================================
 // Author: Francois Laubscher
 // Date: 2014-07-01
-// Description: JSON Webservice helper class
+// Description: Webservice helper class
 // =============================================
 
 function WebService(url) {
