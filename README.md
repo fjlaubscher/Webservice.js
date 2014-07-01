@@ -3,9 +3,10 @@ Webservice.js
 
 A simple Web service wrapper library.
 
-I got kind of tired relying on JQuery all the time to make any HTTP requests using JavaScript. I decided to build this tiny, simple JavaScript library which can be used to call Web services using HTTP GET or HTTP POST.
+I got kind of tired using JQuery to make all my HTTP requests in JavaScript. 
+I decided to build this tiny, simple JavaScript library which can be used to call Web services using HTTP GET or HTTP POST.
 
-It probably sucks, but it works. :D
+It probably sucks, but it works for me :D
 
 Want to know how to use it? Pretty simple, check.
 
