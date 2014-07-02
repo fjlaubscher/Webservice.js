@@ -32,7 +32,6 @@ WebService.prototype.CallService = function (method, msgBody, onSuccess, onFail)
                 if (xmlHttp.status == 200) {
                     // response from server is ok
                     onSuccess(xmlHttp.responseText);
-
                 } else {
                     // anything else failed
                     onFail("Error calling service. Status code: " + xmlHttp.status);
@@ -50,7 +49,6 @@ WebService.prototype.CallService = function (method, msgBody, onSuccess, onFail)
     }
 
     // xmlHttp.setRequestHeader('X-Requested-With', 'XMLHttpRequest'); 
-
     // finally send the request
     xmlHttp.send(msgBody);
 }
