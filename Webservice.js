@@ -49,8 +49,7 @@ WebService.prototype.CallService = function (method, msgBody, onSuccess, onFail)
         xmlHttp.setRequestHeader("Content-Type", self.contentType);
     }
 
-    // tells server that this call is made for ajax purposes
-    xmlHttp.setRequestHeader('X-Requested-With', 'XMLHttpRequest'); 
+    // xmlHttp.setRequestHeader('X-Requested-With', 'XMLHttpRequest'); 
 
     // finally send the request
     xmlHttp.send(msgBody);
