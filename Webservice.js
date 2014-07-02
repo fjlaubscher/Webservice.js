@@ -1,15 +1,22 @@
 // =============================================
 // Author: Francois Laubscher
-// Date: 2014-07-01
-// Description: Webservice helper class
+// Date: 2014-07-02
+// Description: Webservice wrapper library
 // =============================================
 
-function WebService(url) {
+function WebService(url, contentType) {
+    this.contentType = contentType;
     this.serviceUrl = url;
     this.CallService = function (method, msgBody, onSuccess, onFail) {
 
         var xmlHttp = new XMLHttpRequest();
         xmlHttp.open(method, this.serviceUrl, true);
+
+        // check if a content type is specified
+        if (this.contentType != null || this.contentType != undefined) {
+            xmlHttp.setRequestHeader("Content-Type", this.contentType);
+        }
+
         // fire this event whenever the service state changes
         xmlHttp.onreadystatechange = function () {
             switch (xmlHttp.readyState) {

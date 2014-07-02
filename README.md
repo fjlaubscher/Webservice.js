@@ -11,7 +11,9 @@ It probably sucks, but it works for me :D
 Want to know how to use it? Pretty simple, check.
 
 	function Test_GET(){
-		var webService = new WebService("<url_goes_here>");
+		// you dont have to specify a content type unless your service requires it to be set. a default of "text/plain;charset=UTF-8" is used
+
+		var webService = new WebService("<url_goes_here>", "<content_type>");
 
 		webService.httpGET(function (result) {
 			alert(result);
@@ -21,7 +23,7 @@ Want to know how to use it? Pretty simple, check.
 	}
 	
 	function Test_POST(){
-		var webService = new WebService("<url_goes_here>");
+		var webService = new WebService("<url_goes_here>", "<content_type>");
 		var object = { FirstName: 'Foo', LastName: 'Bar' };
 
 		webService.httpPOST(JSON.stringify(object), function (result) {
