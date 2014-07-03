@@ -45,7 +45,7 @@ WebService.prototype.CallService = function (method, msgBody, onSuccess, onFail)
 
     // check if a content type is specified
     if (this.contentType != null || this.contentType != undefined) {
-        xmlHttp.setRequestHeader("Content-Type", self.contentType);
+        xmlHttp.setRequestHeader("Content-Type", this.contentType);
     }
 
     // xmlHttp.setRequestHeader('X-Requested-With', 'XMLHttpRequest'); 
