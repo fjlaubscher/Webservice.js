@@ -29,7 +29,7 @@ WebService.prototype.CallService = function (method, msgBody, onSuccess, onFail)
                 break;
             case 4:
                 // request finished and response is ready
-                if (xmlHttp.status > 200 && xmlHttp.status < 300) {
+                if (xmlHttp.status >= 200 && xmlHttp.status < 300) {
                     // response from server is ok
                     onSuccess(xmlHttp.responseText);
                 } else {
