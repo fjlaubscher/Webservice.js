@@ -2,12 +2,12 @@
 // Author: Francois Laubscher
 // Date: 2014-07-02
 // Description: Webservice wrapper library
-// Update: 2014-07-02, Christo Greeff - Added X-Requested-With + refactoring
+// Update: 2014-08-05, Francois Laubscher - added headers array
 // ==========================================================================
 
 // constructor
-function WebService(url, contentType) {
-    this.contentType = contentType;
+function WebService(url, headers) {
+    this.headers = headers;
     this.serviceUrl = url;
 }
 
@@ -43,9 +43,8 @@ WebService.prototype.CallService = function (method, msgBody, onSuccess, onFail)
     // open the request
     xmlHttp.open(method, this.serviceUrl, true);
 
-    // check if a content type is specified
-    if (this.contentType != null || this.contentType != undefined) {
-        xmlHttp.setRequestHeader("Content-Type", this.contentType);
+    for(property in this.headers){
+        xmlHttp.setRequestHeader(property, this.headers[property]);
     }
 
     // xmlHttp.setRequestHeader('X-Requested-With', 'XMLHttpRequest'); 

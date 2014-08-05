@@ -12,10 +12,15 @@ Want to know how to use it? Pretty simple, check.
 
 	function Test_GET(){
 		// you dont have to specify a content type unless your service requires it to be set. a default of "text/plain;charset=UTF-8" is used
+		var headers = {
+            "Accept": "application/json;",
+            "Content-Type": "application/json;",
+		};
 
-		var webService = new WebService("<url_goes_here>", "<content_type>");
+		var webService = new WebService("<url_goes_here>", headers);
 
 		webService.httpGET(function (result) {
+			// you might want to parse the JSON / XML here
 			alert(result);
 		}, function (error){
 			alert(error);
@@ -23,10 +28,17 @@ Want to know how to use it? Pretty simple, check.
 	}
 	
 	function Test_POST(){
-		var webService = new WebService("<url_goes_here>", "<content_type>");
+		var headers = {
+            "Accept": "application/json;",
+            "Content-Type": "application/json;",
+		};
+
+		var webService = new WebService("<url_goes_here>", headers);
 		var object = { FirstName: 'Foo', LastName: 'Bar' };
 
+
 		webService.httpPOST(JSON.stringify(object), function (result) {
+			// you might want to parse the JSON / XML here
 			alert(result);
 		}, function (error){
 			alert(error);
