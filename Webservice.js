@@ -55,7 +55,7 @@ WebService.prototype.CallService = function (method, msgBody, onSuccess, onFail)
 // This function calls the web service by using HTTP GET
 // onSuccess: on success callback function
 // onFail: on fail callback function
-WebService.prototype.httpGET = function (onSuccess, onFail) {
+WebService.prototype.GET = function (onSuccess, onFail) {
     this.CallService("GET", null, onSuccess, onFail);
 }
 
@@ -63,6 +63,6 @@ WebService.prototype.httpGET = function (onSuccess, onFail) {
 // message: message to send
 // onSuccess: on success callback function
 // onFail: on fail callback function
-WebService.prototype.httpPOST = function (message, onSuccess, onFail) {
+WebService.prototype.POST = function (message, onSuccess, onFail) {
     this.CallService("POST", message, onSuccess, onFail);
 }

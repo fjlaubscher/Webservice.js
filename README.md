@@ -19,7 +19,7 @@ Want to know how to use it? Pretty simple, check.
 
 		var webService = new WebService("<url_goes_here>", headers);
 
-		webService.httpGET(function (result) {
+		webService.GET(function (result) {
 			// you might want to parse the JSON / XML here
 			alert(result);
 		}, function (error){
@@ -37,7 +37,7 @@ Want to know how to use it? Pretty simple, check.
 		var object = { FirstName: 'Foo', LastName: 'Bar' };
 
 
-		webService.httpPOST(JSON.stringify(object), function (result) {
+		webService.POST(JSON.stringify(object), function (result) {
 			// you might want to parse the JSON / XML here
 			alert(result);
 		}, function (error){
