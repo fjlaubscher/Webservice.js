@@ -2,13 +2,12 @@
 // Author: Francois Laubscher
 // Date: 2014-07-02
 // Description: Webservice wrapper library
-// Update: 2014-08-05, Francois Laubscher - added headers array
+// Update: 2015-05-11, Francois Laubscher - updated filename and use options instead
 // ==========================================================================
 
 // constructor
-function WebService(url, headers) {
-    this.headers = headers;
-    this.serviceUrl = url;
+function webservice() {
+
 }
 
 // Call Service
@@ -16,7 +15,7 @@ function WebService(url, headers) {
 // msgBody: POST content
 // onSuccess: success method
 // onFail: fail method
-WebService.prototype.CallService = function (method, msgBody, onSuccess, onFail) {
+webservice.prototype.call = function (options) {
     var xmlHttp = new XMLHttpRequest();
 
     // fire this event whenever the service state changes
@@ -25,44 +24,34 @@ WebService.prototype.CallService = function (method, msgBody, onSuccess, onFail)
             case 0:
                 // request not initialized
                 // onFail
-                onFail("request not initialized.");
+                options.error("request not initialized.");
                 break;
             case 4:
                 // request finished and response is ready
                 if (xmlHttp.status >= 200 && xmlHttp.status < 300) {
                     // response from server is ok
-                    onSuccess(xmlHttp.responseText);
+                    options.success(xmlHttp.responseText);
                 } else {
                     // anything else failed
-                    onFail("Error calling service. Status code: " + xmlHttp.status);
+                    options.error("Error calling service. Status code: " + xmlHttp.status);
                 }
                 break;
         }
     }
+    
+    if(!options.method){
+        options.method = "GET";
+    }
 
     // open the request
-    xmlHttp.open(method, this.serviceUrl, true);
+    xmlHttp.open(options.method, options.url, true);
 
-    for(property in this.headers){
+    for(property in options.headers){
         xmlHttp.setRequestHeader(property, this.headers[property]);
     }
 
     // xmlHttp.setRequestHeader('X-Requested-With', 'XMLHttpRequest'); 
     // finally send the request
-    xmlHttp.send(msgBody);
+    xmlHttp.send(options.body);
 }
 
-// This function calls the web service by using HTTP GET
-// onSuccess: on success callback function
-// onFail: on fail callback function
-WebService.prototype.GET = function (onSuccess, onFail) {
-    this.CallService("GET", null, onSuccess, onFail);
-}
-
-// This function sends a message to the web service by using HTTP POST
-// message: message to send
-// onSuccess: on success callback function
-// onFail: on fail callback function
-WebService.prototype.POST = function (message, onSuccess, onFail) {
-    this.CallService("POST", message, onSuccess, onFail);
-}

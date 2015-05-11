@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>page title</title>
+	</head>
+	<body>
+		<div id="pageContent"></div>
+	</body>
+	<script src="webservice.min.js"></script>
+	<script>
+		(function () {
+			service = new webservice();
+			service.call({
+				url: "http://ip.jsontest.com/",
+				error: function(err) {
+					document.getElementById('pageContent').innerText = err;
+				},
+				success: function(msg) {
+					document.getElementById('pageContent').innerText = msg;
+				}
+			});
+		})();
+	</script>
+</html>

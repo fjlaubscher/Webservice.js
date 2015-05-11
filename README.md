@@ -6,41 +6,43 @@ A simple Web service wrapper library.
 I got kind of tired using JQuery to make all my HTTP requests in JavaScript. 
 I decided to build this tiny, simple JavaScript library which can be used to call Web services using HTTP GET or HTTP POST.
 
-It probably sucks, but it works for me :D
+Want to know how to use it? Pretty simple.
 
-Want to know how to use it? Pretty simple, check.
-
-	function Test_GET(){
-		// you dont have to specify a content type unless your service requires it to be set. a default of "text/plain;charset=UTF-8" is used
-		var headers = {
-            "Accept": "application/json;",
-            "Content-Type": "application/json;",
+		service = new webservice();
+		options = {
+			url: "http://ip.jsontest.com/",
+			error: function(err) {
+				document.getElementById('pageContent').innerText = err;
+			},
+			success: function(msg) {
+				document.getElementById('pageContent').innerText = msg;
+			}
 		};
+		
+		service.call(options);
+		
+the options object currently caters for the following properties:
+> url
+> method (http method ie. GET, POST, PUT, DELETE)
+> error (on error callback)
+> success (on success callback)
+> headers (object containing key-value pairs of valid http headers)
+> body (post body)
 
-		var webService = new WebService("<url_goes_here>", headers);
+example:
 
-		webService.GET(function (result) {
-			// you might want to parse the JSON / XML here
-			alert(result);
-		}, function (error){
-			alert(error);
-		});
-	}
-	
-	function Test_POST(){
-		var headers = {
-            "Accept": "application/json;",
-            "Content-Type": "application/json;",
+		options = {
+			url: "http://ip.jsontest.com/",
+			method: "GET",
+			error: function(err) {
+				document.getElementById('pageContent').innerText = err;
+			},
+			success: function(msg) {
+				document.getElementById('pageContent').innerText = msg;
+			},
+			headers: {
+				"Content-Type": "application/json",
+				"Accepts": "application/json"
+			},
+			body: null
 		};
-
-		var webService = new WebService("<url_goes_here>", headers);
-		var object = { FirstName: 'Foo', LastName: 'Bar' };
-
-
-		webService.POST(JSON.stringify(object), function (result) {
-			// you might want to parse the JSON / XML here
-			alert(result);
-		}, function (error){
-			alert(error);
-		});
-	}
