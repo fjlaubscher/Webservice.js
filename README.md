@@ -22,12 +22,12 @@ Want to know how to use it? Pretty simple.
 		service.call(options);
 		
 the options object currently caters for the following properties:
-> url
-> method (http method ie. GET, POST, PUT, DELETE)
-> error (on error callback)
-> success (on success callback)
-> headers (object containing key-value pairs of valid http headers)
-> body (post body)
+- url
+- method (http method ie. GET, POST, PUT, DELETE)
+- error (on error callback)
+- success (on success callback)
+- headers (object containing key-value pairs of valid http headers)
+- body (post body)
 
 example:
 
