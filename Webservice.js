@@ -47,10 +47,9 @@ webservice.prototype.call = function (options) {
     xmlHttp.open(options.method, options.url, true);
 
     for(property in options.headers){
-        xmlHttp.setRequestHeader(property, this.headers[property]);
+        xmlHttp.setRequestHeader(property, options.headers[property]);
     }
 
-    // xmlHttp.setRequestHeader('X-Requested-With', 'XMLHttpRequest'); 
     // finally send the request
     xmlHttp.send(options.body);
 }
