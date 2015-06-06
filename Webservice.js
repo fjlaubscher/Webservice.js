@@ -2,7 +2,7 @@
 // Author: Francois Laubscher
 // Date: 2014-07-02
 // Description: Webservice wrapper library
-// Update: 2015-05-11, Francois Laubscher - updated filename and use options instead
+// Update: 2015-06-06, Francois Laubscher - fixed XDomainRequest for IE8
 // ==========================================================================
 
 // constructor
@@ -17,6 +17,13 @@ function webservice() {
 // onFail: fail method
 webservice.prototype.call = function (options) {
     var xmlHttp = new XMLHttpRequest();
+    
+    // IE 8 fix
+    if(typeof XDomainRequest != "undefined"){
+        xmlHttp = new XDomainRequest();
+    } else {
+        xmlHttp.withCredentials = true;
+    }
 
     // fire this event whenever the service state changes
     xmlHttp.onreadystatechange = function () {
@@ -53,4 +60,3 @@ webservice.prototype.call = function (options) {
     // finally send the request
     xmlHttp.send(options.body);
 }
-
